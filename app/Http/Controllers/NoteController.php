@@ -50,6 +50,7 @@ class NoteController extends Controller
      */
     public function edit(Note $note)
     {
+        $this->authorize('update', $note);
         return view('notes.edit', compact('note'));
     }
 
@@ -73,6 +74,7 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
+        $this->authorize('delete', $note);
         $note->delete();
         return redirect()->route('notes.index')->with('success', 'Note deleted successfully.');
     }
