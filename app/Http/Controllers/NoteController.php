@@ -44,7 +44,6 @@ class NoteController extends Controller
 
     }
 
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -59,6 +58,8 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
+        $this->authorize('update', $note);
+        
         $data =$request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
