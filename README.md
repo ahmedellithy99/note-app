@@ -1,4 +1,4 @@
-**Install PHP Dependencies**
+1. **Install PHP Dependencies**
 
     ```bash
     composer install
@@ -6,13 +6,13 @@
 
     If you encounter any errors, don't worry. We'll resolve them in the next steps.
 
-**Install JavaScript Dependencies**
+2. **Install JavaScript Dependencies**
 
     ```bash
     npm install
     ```
 
-**Environment Configuration**
+3. **Environment Configuration**
 
     Duplicate the `.env.example` file and rename it to `.env`. Then, fill in your configuration details in the `.env` file.
 
@@ -22,7 +22,7 @@
 
     Ensure to configure you database connection
 
-**Generate Application Key**
+4. **Generate Application Key**
 
     Run the following command to generate an application key for your Laravel application:
 
@@ -30,7 +30,7 @@
     php artisan key:generate
     ```
 
-**Database Migration**
+5. **Database Migration**
 
     Migrate the database using Artisan:
 
@@ -38,7 +38,7 @@
     php artisan migrate
     ```
 
-**Serve the Application**
+6. **Serve the Application**
 
     Start the Laravel development server:
 
@@ -58,7 +58,7 @@
     npm run dev
     ```
 
-**Test the Application**
+7. **Test the Application**
 
     ```bash
     php artisan test
