@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -29,4 +30,33 @@ class RegistrationTest extends TestCase
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
+
+    public function test_unique_username():void
+    {
+        User::factory()->create(['name' => 'alo']);
+
+        $response = $this->post('/register', [
+            'name' => 'alo',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
+
+        $response->assertInvalid(['name' =>  'The name has already been taken']);
+    }
+
+    public function test_unique_email():void
+    {
+        User::factory()->create(['email' => 'test@example.com']);
+
+        $response = $this->post('/register', [
+            'name' => 'aslo',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
+
+        $response->assertInvalid(['email' =>  'The email has already been taken']);
+    }
+
 }
